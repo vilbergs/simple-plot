@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { points } from './functions'
 
 const createScene = () => {
@@ -16,7 +17,7 @@ const createScene = () => {
   scene.add(new THREE.AxesHelper(5))
   scene.add(new THREE.GridHelper(10, 10))
 
-  camera.position.z = 10
+  camera.position.z = 5
 
   document.addEventListener('keydown', (e) => {
     e.preventDefault()
@@ -58,8 +59,16 @@ const createScene = () => {
     }
   })
 
+  const controls = new OrbitControls(camera, renderer.domElement)
+
+  //controls.update() must be called after any manual changes to the camera's transform
+  camera.position.set(0, 10, 10)
+  controls.update()
+
   function animate() {
     requestAnimationFrame(animate)
+
+    controls.update()
 
     renderer.render(scene, camera)
   }
