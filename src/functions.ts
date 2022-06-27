@@ -1,11 +1,6 @@
 import * as THREE from 'three'
 import { Vector3 } from 'three'
-
-export type Vector = [number, number, number]
-
-export const length = (v: Vector) => {
-  return Math.sqrt(v.reduce((sum, n) => sum + Math.pow(n, 2), 0))
-}
+import { Vector } from './types'
 
 export const points = (...vectors: Vector[]) => {
   const geometry = new THREE.BufferGeometry()
